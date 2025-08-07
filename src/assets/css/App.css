@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+    --morado: #5358b6;
+    --gray-light: #f5f6fa;
+}
+
+.bg-gris-light {
+    background-color: var(--gray-light);
+}
+
+.bg-morado {
+    background-color: var(--morado);
+}
+
+.borde-morado {
+    border-color: var(--morado);
+}
+
+.texto-morado {
+    color: var(--morado);
+}
+
+.texto-morado-light {
+    color: var(--gray-light);
+}
