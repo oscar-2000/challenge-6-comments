@@ -57,11 +57,11 @@ export default function CardReply({id, score, content, date, image, username, id
                             <>
                             <div className={`flex flex-row gap-7 items-center ${isEdit == id ? 'opacity-50 cursor-not-allowed' : ''}`}>
                                 <div onClick={ isEdit == id ? null : () => showModal} className="flex flex-row gap-2 items-center">
-                                    <img src="./public/img/icon-delete.svg" className="h-4 w-auto cursor-pointer " alt="Delete comment"/>
+                                    <img src="/img/icon-delete.svg" className="h-4 w-auto cursor-pointer " alt="Delete comment"/>
                                     <button type="button" className="text-red-500 text-lg font-bold cursor-pointer">Delete</button>
                                 </div>
                                 <div onClick={ isEdit == id ? null : () => openEditComment(id)} className="flex flex-row gap-2 items-center">
-                                    <img src="./public/img/icon-edit.svg" className="h-4 w-auto cursor-pointer " alt="Delete comment"/>
+                                    <img src="/img/icon-edit.svg" className="h-4 w-auto cursor-pointer " alt="Delete comment"/>
                                     <button type="button" className="texto-morado text-lg font-bold cursor-pointer">Edit</button>
                                 </div>
                             </div>
