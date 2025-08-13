@@ -34,8 +34,8 @@ export default function CardReply({id, score, content, date, image, username, id
     return(
         <>
         <div className="bg-white rounded-lg p-5">
-            <div className="flex flex-row gap-5">
-                <div className="flex flex-row md:flex-col h-min bg-amber-300 gap-4 items-center justify-between gap-y-3 py-2 px-3 rounded-lg bg-gris-light lg:gap-y-3">
+            <div className="flex flex-col-reverse md:flex-row gap-5">
+                <div className="flex flex-row md:flex-col h-min gap-4 items-center justify-between gap-y-3 py-2 px-3 rounded-lg bg-gris-light lg:gap-y-3 w-min">
                     <button onClick={() => upScoreReply(id)} className="cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 15" className="text-[#5358b6]/70 hover:text-[#5358b6] duration-300 h-4 w-auto">
                             <path d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z" fill="currentColor"/>
@@ -49,14 +49,14 @@ export default function CardReply({id, score, content, date, image, username, id
                     </button>
                 </div>
                 <div className="flex flex-row flex-wrap items-start">
-                    <div className="flex w-full order-1 flex-1/2 flex-row gap-4 items-center bg-red-300 flex-wrap">
+                    <div className="flex w-full order-1 flex-1/2 flex-row gap-4 items-center flex-wrap">
                         <img src={image} alt={username} className="h-12 w-auto" />
                         <p className="text-black font-semibold text-lg">{username} ({id}) {isUserCurrent ? <span className="bg-morado py-1 px-3 rounded-sm text-white text-sm ms-2">you</span> : ''}</p>
                         <p className="text-gray-500 font-semibold text-lg">{date}</p>
                     </div>
                     {isUserCurrent ? (
                         <>
-                        <div className={`w-full flex flex-row flex-wrap gap-7 items-center bg-green-300 order-4 md:order-2 flex-1/6 md:flex-1/4 justify-end ${isEdit == id ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                        <div className={`w-full flex flex-row flex-wrap gap-7 items-center order-4 md:order-2 flex-1/6 md:flex-1/4 justify-end ${isEdit == id ? 'opacity-50 cursor-not-allowed' : ''}`}>
                             <div onClick={ isEdit == id ? null : () => showModal()} className="flex flex-row gap-2 items-center">
                                 <img src="/img/icon-delete.svg" className="h-4 w-auto cursor-pointer " alt="Delete comment"/>
                                 <button type="button" className="text-red-500 text-lg font-bold cursor-pointer">Delete</button>
@@ -84,7 +84,7 @@ export default function CardReply({id, score, content, date, image, username, id
                         </>
                     ) : (
                         <button onClick={() => showReplyComment(id)}  className="cursor-pointer group order-4 md:order-2">
-                            <div className="flex flex-row gap-1 items-center">
+                            <div className="flex flex-row gap-1 items-center w-full flex-1/2 justify-end">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -7 25 25" className="text-[#5358b6]/70 group-hover:text-[#5358b6] duration-300 h-9 w-auto">
                                     <path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="currentColor"/>
                                 </svg>
@@ -93,7 +93,7 @@ export default function CardReply({id, score, content, date, image, username, id
                         </button>
                     )}
                     {isEdit == id ? (
-                        <div className="w-full order-3 md:flex-1 bg-blue-300 flex flex-row gap-2">
+                        <div className="w-full order-3 md:flex-1 flex flex-row gap-2">
                             <textarea 
                                 name={`comment_${id}`} 
                                 id={`comment_${id}`} 
@@ -105,7 +105,7 @@ export default function CardReply({id, score, content, date, image, username, id
                             </div>
                         </div>
                     ) : (
-                        <div className="flex w-full bg-blue-300 order-2">
+                        <div className="flex w-full order-2">
                             <p className="text-gray-500 text-lg mt-4 font-semibold"><span className="texto-morado font-semibold">@{replyingTo}</span> {content}</p>
                         </div>
                     )}
