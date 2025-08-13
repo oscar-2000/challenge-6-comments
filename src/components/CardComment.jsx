@@ -35,7 +35,7 @@ export default function CardComment({id, score, content, date, image, username, 
     return(
         <>
         <div key={id} className="bg-white rounded-lg p-5">
-            <div className="flex flex-col-reverse md:flex-row gap-5">
+            <div className="flex flex-col-reverse md:flex-row gap-x-5 gap-y-3">
                 <div className="flex flex-row md:flex-col h-min gap-4 items-center justify-between gap-y-3 py-2 px-3 rounded-lg bg-gris-light lg:gap-y-3 w-min">
                     <button onClick={() => upScore(id)} className="cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 15" className="text-[#5358b6]/70 hover:text-[#5358b6] duration-300 h-5 w-auto">

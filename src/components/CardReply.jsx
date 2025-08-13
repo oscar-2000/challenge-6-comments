@@ -34,7 +34,7 @@ export default function CardReply({id, score, content, date, image, username, id
     return(
         <>
         <div className="bg-white rounded-lg p-5">
-            <div className="flex flex-col-reverse md:flex-row gap-5">
+            <div className="flex flex-col-reverse md:flex-row gap-x-5 gap-y-3">
                 <div className="flex flex-row md:flex-col h-min gap-4 items-center justify-between gap-y-3 py-2 px-3 rounded-lg bg-gris-light lg:gap-y-3 w-min">
                     <button onClick={() => upScoreReply(id)} className="cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 15" className="text-[#5358b6]/70 hover:text-[#5358b6] duration-300 h-4 w-auto">
@@ -56,7 +56,7 @@ export default function CardReply({id, score, content, date, image, username, id
                     </div>
                     {isUserCurrent ? (
                         <>
-                        <div className={`w-full flex flex-row flex-wrap gap-7 items-center order-4 md:order-2 flex-1/6 md:flex-1/4 justify-end ${isEdit == id ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                        <div className={`w-full flex flex-row flex-wrap gap-7 items-center order-4 md:order-2 flex-1/6 md:flex-1/4 justify-end mt-5 md:mt-0 ${isEdit == id ? 'opacity-50 cursor-not-allowed' : ''}`}>
                             <div onClick={ isEdit == id ? null : () => showModal()} className="flex flex-row gap-2 items-center">
                                 <img src="/img/icon-delete.svg" className="h-4 w-auto cursor-pointer " alt="Delete comment"/>
                                 <button type="button" className="text-red-500 text-lg font-bold cursor-pointer">Delete</button>
