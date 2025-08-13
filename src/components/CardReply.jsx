@@ -51,7 +51,7 @@ export default function CardReply({id, score, content, date, image, username, id
                 <div className="flex flex-row flex-wrap items-start">
                     <div className="flex w-full order-1 flex-1/2 flex-row gap-4 items-center flex-wrap">
                         <img src={image} alt={username} className="h-12 w-auto" />
-                        <p className="text-black font-semibold text-lg">{username} ({id}) {isUserCurrent ? <span className="bg-morado py-1 px-3 rounded-sm text-white text-sm ms-2">you</span> : ''}</p>
+                        <p className="text-black font-semibold text-lg">{username} {isUserCurrent ? <span className="bg-morado py-1 px-3 rounded-sm text-white text-sm ms-2">you</span> : ''}</p>
                         <p className="text-gray-500 font-semibold text-lg">{date}</p>
                     </div>
                     {isUserCurrent ? (
