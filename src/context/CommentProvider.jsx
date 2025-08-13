@@ -79,77 +79,124 @@ export default function CurrentUserProvider({children}) {
     };
 
     const updateCommentReply = (id, value) => {
-        setComments(prev => 
-            comments.map(item => {
-                item.replies = item.replies.map(replie => {
-                    if(replie.id === id) {
-                        const newValue = value;
-                        return {...replie, content : newValue}
-                    }
-                    return replie;
+        if(value.length > 0) {
+            setComments(prev => 
+                comments.map(item => {
+                    item.replies = item.replies.map(replie => {
+                        if(replie.id === id) {
+                            const newValue = value;
+                            return {...replie, content : newValue}
+                        }
+                        return replie;
+                    })
+                    return item;
                 })
-                return item;
-            })
-        )
+            )
+        } else alert("Please write something");
     }
 
     const newComment = (value) => {
-        const newId = comments[comments.length - 1].id + 1;
-        let newObj = {
-            id: newId,
-            content: value,
-            createdAt: "Right now",
-            score: 0,
-            user: {
-                image: { 
-                    png: currentUser.image.png,
-                    webp: currentUser.image.webp
+        if(value.length > 0) {
+            const newId = comments[comments.length - 1].id + 1;
+            let newObj = {
+                id: newId,
+                content: value,
+                createdAt: "Right now",
+                score: 0,
+                user: {
+                    image: { 
+                        png: currentUser.image.png,
+                        webp: currentUser.image.webp
+                    },
+                    username: currentUser.username
                 },
-                username: currentUser.username
-            },
-            replies: []
-        }
-        setComments(prev => [...prev, newObj]);
+                replies: []
+            }
+            setComments(prev => [...prev, newObj]);
+        } else alert("Please write something");
     }
 
     const updateComment = (id, value) => {
-        setComments(prev => 
-            comments.map(item => {
-                if(item.id === id) {
-                    const newValue = value;
-                    return {...item, content : newValue}
-                }
-                return item
-            })
-        )
+        if(value.length > 0) {
+            setComments(prev => 
+                comments.map(item => {
+                    if(item.id === id) {
+                        const newValue = value;
+                        return {...item, content : newValue}
+                    }
+                    return item
+                })
+            )
+        } else alert("Please write something");
     }
 
-    const newReply = (idCommentParent, value) => {
-        const parentComment = comments.find(item => item.id === idCommentParent);
-        const newValue = parentComment ? parentComment.replies.length + 1 : 1;
-        let newObj = {
-            id: newValue,
-            content: value,
-            createdAt: "Right now",
-            score: 0,
-            user: {
-                image: { 
-                    png: currentUser.image.png,
-                    webp: currentUser.image.webp
-                },
-                username: currentUser.username
-            },
-            replies: []
-        }
-        setComments(prev => 
-            comments.map(item => {
-                if(item.id === idCommentParent) {
-                    return {...item, replies: [...item.replies, newObj]}
+    const newReply = (id, idCommentParent, value, type) => {
+        if(value.length > 0) {
+            let parentComment, newObj;
+            if(type == 1) {
+                //RESPONDE A UN COMENTARIO
+                parentComment = comments.find(item => item.id === id);
+            } else {
+                //RESPONDE A UNA RESPUESTA
+                parentComment = comments.find(item => item.id === idCommentParent);
+            }
+            const newValue = parentComment ? parentComment.replies.length + 1 : 1;
+            if(type == 1) {
+                newObj = {
+                    id: newValue,
+                    content: value,
+                    createdAt: "Right now",
+                    score: 0,
+                    user: {
+                        image: { 
+                            png: currentUser.image.png,
+                            webp: currentUser.image.webp
+                        },
+                        username: currentUser.username
+                    },
+                    replies: []
                 }
-                return item
+            } else {
+                newObj = {
+                    id: newValue,
+                    content: value,
+                    createdAt: "Right now",
+                    score: 0,
+                    replyingTo: parentComment.replies.find(reply => reply.id === id).user.username,
+                    user: {
+                        image: { 
+                            png: currentUser.image.png,
+                            webp: currentUser.image.webp
+                        },
+                        username: currentUser.username
+                    }
+                }
+            }
+            console.log(newObj);
+            setComments(prev => {
+                if(type === 1) {
+                    return(
+                        comments.map(item => {
+                            if(item.id === id) {
+                                return {...item, replies: [...item.replies, newObj]}
+                            }
+                            return item
+                        })
+                    )
+                }
+                else {
+                    return(
+                        comments.map(item => {
+                            if(item.id === idCommentParent) {
+                                return {...item, replies: [...item.replies, newObj]}
+                            }
+                            return item
+                        })
+                    )
+                }
             })
-        )
-        setReply(prev => "");
+            setReply(prev => "");
+        } else alert("Please write something");
     }
 
     return (

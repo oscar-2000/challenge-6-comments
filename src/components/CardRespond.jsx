@@ -2,24 +2,21 @@ import React from "react";
 import { useContext } from "react";
 import CommentContext from "@context/CommentContext";
 
-export default function CardRespond({idComment, username}) {
-    const {currentUser, newReply, comments} = useContext(CommentContext);
+export default function CardRespond({idComment, idCommentParent, username, type}) {
+    const {currentUser, newReply, comments, showReplyComment} = useContext(CommentContext);
     return(
-        <div key={idComment} className="bg-white rounded-lg p-5">
-            <div className="flex flex-row gap-5">
-                <div className="w-full">
-                    <div className="flex flex-row gap-4 items-center">
-                        <img src={currentUser.image.png} alt={currentUser.username} className="h-12 w-auto" />
-                        <textarea 
-                            placeholder={`@${username}`} 
-                            name={`respond_comment_${idComment}`} 
-                            id={`respond_comment_${idComment}`} 
-                            className="border-[1px] borde-morado p-4 rounded-lg w-full mt-3 resize-none"
-                        >
-                        </textarea>
-                        <button onClick={() => newReply(idComment, document.getElementById(`respond_comment_${idComment}`).value)} className="bg-morado py-3 px-4 text-white uppercase text-lg rounded-lg font-semibold cursor-pointer">Update</button>
-                    </div>
-                </div>
+        <div key={idComment} className="bg-white rounded-lg p-5 flex flex-col md:flex-row gap-4 justify-between items-center">
+            <img src={currentUser.image.png} alt={currentUser.username} className="h-12 w-auto" />
+            <textarea 
+                placeholder={`@${username}`} 
+                name={`respond_comment_${idComment}`} 
+                id={`respond_comment_${idComment}`} 
+                className="border-[1px] borde-morado p-4 rounded-lg w-full resize-none"
+            >
+            </textarea>
+            <div className="flex flex-row md:flex-col gap-3 justify-end w-auto">
+                <button onClick={() => showReplyComment(false)} className="bg-red-600 text-white py-3 px-4 uppercase text-md rounded-lg font-semibold cursor-pointer">Cancel</button>
+                <button onClick={() => newReply(idComment, idCommentParent, document.getElementById(`respond_comment_${idComment}`).value, type)} className="bg-morado py-3 px-4 text-white uppercase text-md rounded-lg font-semibold cursor-pointer">Update</button>
             </div>
         </div>
     )

@@ -15,7 +15,7 @@ function App() {
       <div className='bg-gris-light'>
         <div className='w-full lg:max-w-[1300px] mx-auto py-10 px-5'>
           <div className='flex flex-col items-center justify-center'>
-            <div className="s:w-full lg:w-[1200px]">
+            <div className="s:w-full lg:w-[900px]">
               <div className="flex flex-col gap-y-5">
                 {comments.map((item) => {
                   return(
